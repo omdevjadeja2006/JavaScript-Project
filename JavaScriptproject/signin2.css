@@ -1,0 +1,166 @@
+/* Keep all your original Universal Reset and Body styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url("images/pexels-catiamatos-1072179.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-family: sans-serif, arial;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* NEW: Landing Animation (Matches Login) */
+@keyframes boxLanding {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.landing-anim {
+    animation: boxLanding 1s ease-out;
+}
+
+/* UPDATED: Header to match Homepage Aesthetic */
+.header {
+    background: transparent;
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 60px;
+    align-items: center;
+}
+
+.logo {
+    font-size: 28px;
+    background: linear-gradient(45deg, #ffffff, #6fa7a5);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+}
+
+/* NEW: Underline Animation for Header Links */
+.na {
+    text-decoration: none;
+    color: white;
+    margin-left: 30px;
+    font-size: 18px;
+    font-weight: 500;
+    position: relative;
+    padding-bottom: 5px;
+    transition: 0.3s;
+}
+
+.na::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: white;
+    transition: width 0.3s ease;
+}
+
+.na:hover::after {
+    width: 100%; /* Underline grows on hover */
+}
+
+/* Perfect Centering Logic */
+.container {
+    height: calc(100vh - 150px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --- YOUR ORIGINAL FORMBOX, DATA, AND BTN CSS (UNTOUCHED) --- */
+
+.formbox {
+   position: relative;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   border: 2px solid rgba(255, 255, 255, .5);
+   background: transparent;
+   border-radius: 20px;
+   width: 400px;
+   height: 520px; 
+   backdrop-filter: blur(11px);
+   box-shadow: 0px 0px 30px rgba(0,0,0,0.5);
+   text-align: center;
+}
+
+.data {
+    width: 250px;
+    height: 40px;
+    padding: 8px 4px;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    background: transparent;
+    color: #ffffff;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+/* ... keep all other .data hover, focus, and .btn states exactly as they were ... */
+
+::placeholder {
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.data:hover {
+    border-bottom-color: rgba(0, 190, 255, 0.9);
+    background: rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0 0 1px rgba(0, 190, 255, 0.45), 0 0 20px rgba(0, 140, 200, 0.6);
+}
+
+.data:focus {
+    border-bottom-color: #ffffff;
+    background: rgba(0, 0, 0, 0.35);
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.4), 0 0 24px rgba(0, 140, 200, 0.8);
+}
+
+.btn {
+    padding: 10px 32px;
+    border-radius: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    background: transparent;         
+    color: #ffffff;
+    font-size: 16px;
+    width: 250px;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+    transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.btn:hover {
+    background: rgba(0, 0, 0, 0.4);
+    transform: translateY(-1px);
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.25), 0 0 30px rgba(0, 140, 200, 0.8);
+}
+
+.btn:active {
+    transform: translateY(1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+
+#heading {
+    font-size: 30px;
+    color: white;
+    font-weight: 700;
+}
