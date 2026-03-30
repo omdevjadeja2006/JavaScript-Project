@@ -26,6 +26,6 @@
 //   http://localhost/taskflow/google_callback.php
 
 
-define('GOOGLE_CLIENT_ID',     '1041637574667-dttv3mr6v09k9t92i7l1sg3h78n3bgq3.apps.googleusercontent.com');
-define('GOOGLE_CLIENT_SECRET', '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');
+define('GOOGLE_CLIENT_ID',     'YOUR_CLIENT_ID');
+define('GOOGLE_CLIENT_SECRET', 'YOUR_CLIENT_SECRET');
 define('GOOGLE_REDIRECT_URI',  'http://localhost/javascriptproject/google_callback.php');
