@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TaskFlow - Join the Sanctuary</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                    "on-surface-variant": "#414844",
+                    "tertiary-container": "#683b3a",
+                    "secondary-container": "#a0f4c8",
+                    "inverse-primary": "#a5d0b9",
+                    "surface": "#f8faf9",
+                    "inverse-on-surface": "#eff1f0",
+                    "primary-container": "#274f3d",
+                    "on-primary": "#ffffff",
+                    "secondary-fixed-dim": "#85d7ad",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-fixed": "#a0f4c8",
+                    "outline-variant": "#c1c8c2",
+                    "surface-container-high": "#e6e9e8",
+                    "inverse-surface": "#2e3131",
+                    "primary-fixed": "#c0edd4",
+                    "on-tertiary-fixed": "#331010",
+                    "on-secondary-fixed-variant": "#005236",
+                    "surface-container": "#eceeed",
+                    "on-tertiary-container": "#e4a7a5",
+                    "tertiary": "#4e2525",
+                    "on-tertiary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "surface-container-low": "#f2f4f3",
+                    "on-tertiary-fixed-variant": "#673a39",
+                    "error": "#ba1a1a",
+                    "primary-fixed-dim": "#a5d0b9",
+                    "secondary": "#0d6c4a",
+                    "on-secondary-fixed": "#002113",
+                    "surface-variant": "#e1e3e2",
+                    "error-container": "#ffdad6",
+                    "outline": "#717973",
+                    "on-primary-fixed": "#002114",
+                    "surface-tint": "#3e6653",
+                    "on-primary-container": "#95c0a9",
+                    "on-primary-fixed-variant": "#264e3c",
+                    "on-background": "#191c1c",
+                    "surface-bright": "#f8faf9",
+                    "background": "#f8faf9",
+                    "on-secondary": "#ffffff",
+                    "surface-dim": "#d8dada",
+                    "tertiary-fixed-dim": "#f6b7b4",
+                    "on-surface": "#191c1c",
+                    "on-secondary-container": "#19724f",
+                    "tertiary-fixed": "#ffdad8",
+                    "surface-container-highest": "#e1e3e2",
+                    "on-error": "#ffffff",
+                    "primary": "#0e3827"
+                },
+                fontFamily: {
+                    "headline": ["Manrope"],
+                    "body": ["Manrope"],
+                    "label": ["Manrope"]
+                },
+                borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                animation: {
+                    'shimmer': 'shimmer 2.5s infinite linear',
+                    'float': 'float 3s ease-in-out infinite',
+                },
+                keyframes: {
+                    'shimmer': {
+                        '0%': { 'background-position': '-200% 0' },
+                        '100%': { 'background-position': '200% 0' },
+                    },
+                    'float': {
+                        '0%, 100%': { transform: 'translateY(0)' },
+                        '50%': { transform: 'translateY(-5px)' },
+                    }
+                }
+            },
+        },
+    }
+</script>
+<style>
+    /* Hide scrollbar */
+    html { scrollbar-width: none; -ms-overflow-style: none; }
+    html::-webkit-scrollbar { display: none; }
+
+    /* ── "Create your sanctuary" AUTO PULSE (every 3s) ── */
+    @keyframes logoPulse {
+        0%,100% { opacity:1; transform: scale(1) translateY(0); }
+        50%      { opacity:0.82; transform: scale(1.02) translateY(-2px); }
+    }
+    .logo-pulse { animation: logoPulse 3s ease-in-out infinite; }
+
+    /* ── NAV ICONS AUTO PULSE (staggered, every 3s) ── */
+    @keyframes iconPulse {
+        0%,100% { transform: scale(1); opacity:1; }
+        50%      { transform: scale(1.2) rotate(8deg); opacity:0.75; }
+    }
+    .nav-icon-pulse-1 { animation: iconPulse 3s ease-in-out 0s infinite; }
+    .nav-icon-pulse-2 { animation: iconPulse 3s ease-in-out 0.4s infinite; }
+    .nav-icon-pulse-3 { animation: iconPulse 3s ease-in-out 0.8s infinite; }
+
+    /* ── NAV LINKS GROUP HOVER ── */
+    .nav-links-hover {
+        transition: background 0.3s ease, border-radius 0.3s ease,
+                    box-shadow 0.3s ease, padding 0.3s ease;
+        border-radius: 9999px;
+        padding: 4px 8px;
+    }
+    .nav-links-hover:hover {
+        background: rgba(14,56,39,0.07);
+        box-shadow: 0 4px 16px rgba(14,56,39,0.09);
+        padding: 4px 14px;
+    }
+
+    /* ── HEADING HOVER LIFT (red box) ── */
+    .heading-hover {
+        transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1),
+                    text-shadow 0.35s ease;
+        display: inline-block;
+        cursor: default;
+    }
+    .heading-hover:hover {
+        transform: translateY(-5px) scale(1.015);
+        text-shadow: 0 10px 28px rgba(14,56,39,0.16);
+    }
+
+    .glass-card {
+        background: rgba(255, 255, 255, 0.65);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+    }
+    .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .input-group:focus-within .material-symbols-outlined {
+        color: #0d6c4a;
+        font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 24;
+        transform: scale(1.2) rotate(5deg);
+    }
+    .input-field {
+        transition: background-color 0.4s ease, box-shadow 0.4s ease, transform 0.2s ease;
+    }
+    .input-field:focus {
+        background-color: rgba(255, 255, 255, 0.95);
+        transform: translateY(-2px);
+    }
+    .btn-shimmer {
+        background: linear-gradient(90deg, #0e3827 0%, #274f3d 40%, #3e6653 50%, #274f3d 60%, #0e3827 100%);
+        background-size: 200% 100%;
+    }
+    .btn-shimmer:hover {
+        animation: shimmer 1.5s infinite linear;
+    }
+    .ripple-effect {
+        position: relative;
+        overflow: hidden;
+    }
+    .ripple-effect::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        background: rgba(255,255,255,0.2);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        transition: width 0.4s ease, height 0.4s ease, opacity 0.4s ease;
+        opacity: 0;
+    }
+    .ripple-effect:active::after {
+        width: 300%;
+        height: 300%;
+        opacity: 1;
+        transition: 0s;
+    }
+    .label-float {
+        transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.3s ease;
+    }
+    .input-group:focus-within .label-float {
+        transform: translateX(6px);
+        color: #0d6c4a;
+    }
+
+    /* Toast */
+    #toast { transition: opacity 0.4s ease, transform 0.4s ease; }
+</style>
+</head>
+<body class="font-body bg-background text-on-surface antialiased min-h-screen flex flex-col relative overflow-x-hidden">
+
+<!-- Background Layer -->
+<div class="fixed inset-0 z-[-1]">
+    <img alt="Deep forest landscape" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0zPqZ-YNfj9Z5BaeO7UTUbrBnnh6knxpJ0aM0D_WEaOO8o9IP8UXDQoIBCu_TkstfbAO4TT6TMixZ80iaCJK5RQTVPVT4q1qJt-f1vUqCstkSdkqB6gMc2sdxQlbSkP1roqgKfYDSSmNTXEZ_O_YxxbsvYMHESsIq_9XBpncuPvCnx_7sDsPfL_DPG6meHcFu-gq2su2e8wgtuBqTDGuBv-tigPd0aG12stK829hBRBs18omVNVQw1jkTdUD4ODdeiHzl5YqC9fs"/>
+    <div class="absolute inset-0 bg-gradient-to-b from-surface/20 via-transparent to-surface/40"></div>
+</div>
+
+<!-- ── Toast Notification ── -->
+<div id="toast" class="fixed top-6 left-1/2 -translate-x-1/2 z-[100] opacity-0 pointer-events-none transform -translate-y-2">
+    <div class="bg-gray-900 text-white text-sm font-semibold px-6 py-3 rounded-full shadow-xl flex items-center gap-2">
+        <span class="material-symbols-outlined text-base" id="toast-icon">info</span>
+        <span id="toast-msg"></span>
+    </div>
+</div>
+
+<!-- ── Top Nav Bar ── -->
+<nav class="fixed top-0 w-full z-50 bg-emerald-50/70 dark:bg-emerald-950/70 backdrop-blur-2xl shadow-[0_20px_50px_rgba(25,28,28,0.06)] flex justify-between items-center px-8 py-4 max-w-full">
+    <a href="index.php" class="text-2xl font-black text-emerald-950 dark:text-emerald-50 tracking-tighter">TaskFlow</a>
+    <div class="hidden md:flex items-center gap-8 nav-links-hover">
+        <!-- Nav links → dashboard pages (update hrefs once you have those pages) -->
+        <a class="font-manrope tracking-tight font-bold text-sm text-emerald-800/60 dark:text-emerald-200/60 hover:text-emerald-950 dark:hover:text-white transition-colors duration-300" href="Login.html">Login</a>
+        <a class="font-manrope tracking-tight font-bold text-sm text-emerald-800/60 dark:text-emerald-200/60 hover:text-emerald-950 dark:hover:text-white transition-colors duration-300" href="index.php">Home</a>
+        <a class="font-manrope tracking-tight font-bold text-sm text-emerald-800/60 dark:text-emerald-200/60 hover:text-emerald-950 dark:hover:text-white transition-colors duration-300" href="projects.php">Projects</a>
+        <a class="font-manrope tracking-tight font-bold text-sm text-emerald-800/60 dark:text-emerald-200/60 hover:text-emerald-950 dark:hover:text-white transition-colors duration-300" href="journal.php">Journal</a>
+    </div>
+    <div class="flex items-center gap-4">
+        <span class="nav-icon-pulse-1 material-symbols-outlined text-emerald-900 dark:text-emerald-50 cursor-pointer scale-95 active:scale-90 transition-transform">notifications</span>
+        <a href="settings.php"><span class="nav-icon-pulse-2 material-symbols-outlined text-emerald-900 dark:text-emerald-50 cursor-pointer scale-95 active:scale-90 transition-transform">settings</span></a>
+        <a href="Login.html">
+            <div class="nav-icon-pulse-3 w-9 h-9 rounded-full bg-emerald-100 dark:bg-emerald-800 flex items-center justify-center ring-2 ring-emerald-500/20 ring-offset-2 ring-offset-white/10 cursor-pointer hover:scale-110 transition-transform shadow-sm">
+                <span class="material-symbols-outlined text-emerald-700 dark:text-emerald-200 text-xl" style="font-variation-settings: 'FILL' 1">person</span>
+            </div>
+        </a>
+    </div>
+</nav>
+
+<!-- ── Main Content ── -->
+<main class="flex-grow flex items-center justify-center px-6 pt-32 pb-16">
+    <div class="w-full max-w-xl">
+        <div class="glass-card rounded-[2.5rem] p-10 md:p-14 shadow-[0_40px_100px_rgba(14,56,39,0.12)] border border-white/40">
+
+            <div class="space-y-2 mb-10">
+                <h1 class="logo-pulse heading-hover font-headline text-4xl md:text-5xl font-extrabold text-primary tracking-tighter leading-none">
+                    Create your sanctuary.
+                </h1>
+                <p class="text-on-surface-variant font-medium">Join thousands of focused minds today.</p>
+            </div>
+
+            <!-- Error / success banners -->
+            <div id="error-banner" class="hidden mb-6 bg-red-100 border border-red-300 text-red-800 text-sm font-semibold px-4 py-3 rounded-xl"></div>
+
+            <!-- Form → submit_xyz.php -->
+            <form id="signup-form" action="submit_xyz.php" method="POST" class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Email Address -->
+                    <div class="space-y-1.5 input-group">
+                        <label class="block font-label text-[10px] font-extrabold uppercase tracking-widest text-primary ml-1 label-float">Email Address</label>
+                        <div class="relative">
+                            <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary/40 text-xl pointer-events-none">mail</span>
+                            <input class="input-field w-full h-14 pl-12 pr-5 bg-surface-container-highest/50 border-none rounded-xl focus:ring-4 focus:ring-primary-fixed/40 placeholder:text-outline/60"
+                                placeholder="evelyn@flow.com" type="email" name="email" id="email"/>
+                        </div>
+                        <span class="text-error text-xs font-medium px-1 block h-4" id="email-error"></span>
+                    </div>
+                    <!-- Username -->
+                    <div class="space-y-1.5 input-group">
+                        <label class="block font-label text-[10px] font-extrabold uppercase tracking-widest text-primary ml-1 label-float">Username</label>
+                        <div class="relative">
+                            <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary/40 text-xl pointer-events-none">badge</span>
+                            <input class="input-field w-full h-14 pl-12 pr-5 bg-surface-container-highest/50 border-none rounded-xl focus:ring-4 focus:ring-primary-fixed/40 placeholder:text-outline/60"
+                                placeholder="EvelynW99" type="text" name="username" id="username"/>
+                        </div>
+                        <span class="text-error text-xs font-medium px-1 block h-4" id="username-error"></span>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Password -->
+                    <div class="space-y-1.5 input-group">
+                        <label class="block font-label text-[10px] font-extrabold uppercase tracking-widest text-primary ml-1 label-float">Password</label>
+                        <div class="relative">
+                            <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary/40 text-xl pointer-events-none">lock</span>
+                            <input class="input-field w-full h-14 pl-12 pr-5 bg-surface-container-highest/50 border-none rounded-xl focus:ring-4 focus:ring-primary-fixed/40 placeholder:text-outline/60"
+                                placeholder="••••••••" type="password" name="password" id="password"/>
+                        </div>
+                        <span class="text-error text-xs font-medium px-1 block h-4" id="pass-error"></span>
+                    </div>
+                    <!-- Confirm Password -->
+                    <div class="space-y-1.5 input-group">
+                        <label class="block font-label text-[10px] font-extrabold uppercase tracking-widest text-primary ml-1 label-float">Confirm Password</label>
+                        <div class="relative">
+                            <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary/40 text-xl pointer-events-none">lock_reset</span>
+                            <input class="input-field w-full h-14 pl-12 pr-5 bg-surface-container-highest/50 border-none rounded-xl focus:ring-4 focus:ring-primary-fixed/40 placeholder:text-outline/60"
+                                placeholder="••••••••" type="password" name="confirm_password" id="confirm_password"/>
+                        </div>
+                        <span class="text-error text-xs font-medium px-1 block h-4" id="confirm-error"></span>
+                    </div>
+                </div>
+                <button class="ripple-effect btn-shimmer w-full h-16 text-on-primary font-bold rounded-xl shadow-xl shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2 mt-4" type="submit">
+                    <span>Create Account</span>
+                    <span class="material-symbols-outlined text-lg">arrow_forward</span>
+                </button>
+            </form>
+
+            <div class="relative my-10 flex items-center py-1">
+                <div class="flex-grow border-t border-primary/10"></div>
+                <span class="flex-shrink mx-4 font-label text-[10px] font-bold text-primary/40 tracking-widest uppercase">Or join with</span>
+                <div class="flex-grow border-t border-primary/10"></div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+                <!-- Google OAuth → google_auth.php -->
+                <a href="google_auth.php" class="flex items-center justify-center gap-3 h-14 bg-surface-container-lowest/80 hover:bg-white rounded-xl transition-all shadow-sm hover:-translate-y-1 active:scale-95 border border-outline-variant/30 hover:shadow-md hover:border-[#4285F4]/30 group">
+                    <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24">
+                        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                        <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+                        <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                    </svg>
+                    <span class="text-xs font-bold text-primary/80 group-hover:text-[#4285F4] transition-colors">Continue with Google</span>
+                </a>
+                <!-- SaaS SSO → coming soon badge -->
+                <div class="relative flex items-center justify-center gap-3 h-14 bg-surface-container-lowest/50 rounded-xl border border-dashed border-outline-variant/40 cursor-not-allowed opacity-60" title="Enterprise SSO — coming soon">
+                    <span class="material-symbols-outlined text-primary/40 text-xl">hub</span>
+                    <span class="text-xs font-bold text-primary/50">SaaS SSO</span>
+                    <span class="absolute -top-2 -right-2 bg-secondary text-white text-[9px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded-full shadow-sm">Soon</span>
+                </div>
+            </div>
+
+            <p class="text-center mt-10 text-xs font-medium text-on-surface-variant">
+                Already part of the sanctuary?
+                <a class="text-primary font-bold hover:underline underline-offset-4" href="Login.html">Log in here</a>
+            </p>
+        </div>
+    </div>
+</main>
+
+<!-- ── Footer ── -->
+<footer class="w-full py-12 bg-emerald-50/40 dark:bg-emerald-950/40 flex flex-col md:flex-row justify-between items-center px-12 gap-6">
+    <div class="font-manrope text-xs tracking-widest uppercase text-emerald-800/50 dark:text-emerald-200/50">
+        © 2026 TaskFlow Sanctuary. All rights reserved.
+    </div>
+    <div class="flex gap-8">
+        <a class="font-manrope text-xs tracking-widest uppercase text-emerald-800/50 dark:text-emerald-200/50 hover:text-emerald-700 dark:hover:text-emerald-300 underline-offset-4 hover:underline transition-opacity opacity-80 hover:opacity-100" href="#">Privacy Policy</a>
+        <a class="font-manrope text-xs tracking-widest uppercase text-emerald-800/50 dark:text-emerald-200/50 hover:text-emerald-700 dark:hover:text-emerald-300 underline-offset-4 hover:underline transition-opacity opacity-80 hover:opacity-100" href="#">Terms of Service</a>
+        <a class="font-manrope text-xs tracking-widest uppercase text-emerald-800/50 dark:text-emerald-200/50 hover:text-emerald-700 dark:hover:text-emerald-300 underline-offset-4 hover:underline transition-opacity opacity-80 hover:opacity-100" href="contact.html">Cookie Settings</a>
+    </div>
+</footer>
+
+<!-- Leaf Accents (Decorative) -->
+<div class="fixed top-1/4 -left-20 w-64 h-64 bg-primary/5 rounded-full blur-3xl pointer-events-none animate-float"></div>
+<div class="fixed bottom-1/4 -right-20 w-80 h-80 bg-secondary/10 rounded-full blur-3xl pointer-events-none animate-float" style="animation-delay: -1.5s;"></div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // ── Show errors from PHP redirects ──
+        const urlParams = new URLSearchParams(window.location.search);
+        const errorBanner = document.getElementById('error-banner');
+
+        if (urlParams.has('error')) {
+            errorBanner.classList.remove('hidden');
+            if (urlParams.get('error') === 'passmatch') {
+                errorBanner.textContent = '❌ Passwords do not match. Please try again.';
+            } else if (urlParams.get('error') === 'exists') {
+                errorBanner.textContent = '❌ That username or email is already registered. Try logging in.';
+            } else {
+                errorBanner.textContent = '❌ Something went wrong. Please try again.';
+            }
+        }
+
+        // ── Client-side validation before submitting ──
+        const form = document.getElementById('signup-form');
+        form.addEventListener('submit', function (e) {
+            let hasError = false;
+
+            // Clear previous errors
+            ['email-error','username-error','pass-error','confirm-error'].forEach(id => {
+                document.getElementById(id).textContent = '';
+            });
+
+            const email           = document.getElementById('email').value.trim();
+            const username        = document.getElementById('username').value.trim();
+            const password        = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm_password').value;
+
+            if (!email || !email.includes('@')) {
+                document.getElementById('email-error').textContent = 'Enter a valid email address.';
+                hasError = true;
+            }
+            if (username.length < 3) {
+                document.getElementById('username-error').textContent = 'Username must be at least 3 characters.';
+                hasError = true;
+            }
+            if (password.length < 6) {
+                document.getElementById('pass-error').textContent = 'Password must be at least 6 characters.';
+                hasError = true;
+            }
+            if (password !== confirmPassword) {
+                document.getElementById('confirm-error').textContent = 'Passwords do not match.';
+                hasError = true;
+            }
+
+            if (hasError) e.preventDefault();
+        });
+    });
+
+    // ── Toast ──
+    function showToast(message, icon = 'info') {
+        const toast = document.getElementById('toast');
+        document.getElementById('toast-msg').innerText = message;
+        document.getElementById('toast-icon').innerText = icon;
+        toast.classList.remove('opacity-0', 'pointer-events-none', '-translate-y-2');
+        toast.classList.add('opacity-100', 'translate-y-0');
+        setTimeout(() => {
+            toast.classList.add('opacity-0', 'pointer-events-none', '-translate-y-2');
+            toast.classList.remove('opacity-100', 'translate-y-0');
+        }, 3000);
+    }
+
+    // ── Social buttons coming soon ──
+    function showComingSoon(provider) {
+        showToast(provider + ' sign-up coming soon!', 'schedule');
+    }
+</script>
+</body>
+</html>

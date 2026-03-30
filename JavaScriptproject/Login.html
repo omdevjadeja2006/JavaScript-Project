@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TaskFlow | Sign-in</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                    "primary": "#274f3d",
+                    "on-background": "#191c1c",
+                    "tertiary-container": "#4d6553",
+                    "surface-tint": "#3f6653",
+                    "on-secondary-fixed-variant": "#005236",
+                    "outline-variant": "#bfc9c1",
+                    "primary-fixed": "#c1ecd4",
+                    "on-tertiary-container": "#c6e1ca",
+                    "on-error-container": "#93000a",
+                    "tertiary": "#364d3c",
+                    "surface": "#f8faf9",
+                    "surface-bright": "#f8faf9",
+                    "outline": "#707973",
+                    "surface-variant": "#e1e3e2",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface-variant": "#404943",
+                    "on-primary": "#ffffff",
+                    "on-primary-container": "#b8e4cc",
+                    "on-primary-fixed": "#002114",
+                    "surface-container-highest": "#e1e3e2",
+                    "on-tertiary-fixed-variant": "#354c3b",
+                    "secondary": "#0e6c4a",
+                    "background": "#f8faf9",
+                    "tertiary-fixed": "#cee9d3",
+                    "secondary-fixed-dim": "#85d7ad",
+                    "primary-fixed-dim": "#a5d0b9",
+                    "on-secondary-container": "#19724f",
+                    "surface-container-high": "#e6e9e8",
+                    "on-error": "#ffffff",
+                    "surface-container-low": "#f2f4f3",
+                    "on-secondary-fixed": "#002113",
+                    "on-tertiary": "#ffffff",
+                    "on-surface": "#191c1c",
+                    "on-primary-fixed-variant": "#274e3d",
+                    "on-tertiary-fixed": "#092012",
+                    "inverse-surface": "#2e3131",
+                    "secondary-fixed": "#a0f4c8",
+                    "surface-dim": "#d8dada",
+                    "error-container": "#ffdad6",
+                    "secondary-container": "#a0f4c8",
+                    "inverse-primary": "#a5d0b9",
+                    "tertiary-fixed-dim": "#b3cdb7",
+                    "on-secondary": "#ffffff",
+                    "surface-container": "#eceeed",
+                    "inverse-on-surface": "#eff1f0",
+                    "primary-container": "#3f6754",
+                    "error": "#ba1a1a"
+                },
+                fontFamily: {
+                    "headline": ["Manrope", "sans-serif"],
+                    "body": ["Manrope", "sans-serif"],
+                    "label": ["Manrope", "sans-serif"]
+                },
+                borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+            },
+        },
+    }
+</script>
+<style>
+    /* Hide scrollbar */
+    html { scrollbar-width: none; -ms-overflow-style: none; }
+    html::-webkit-scrollbar { display: none; }
+
+    /* ── "Welcome Back" AUTO PULSE (every 3s) ── */
+    @keyframes logoPulse {
+        0%,100% { opacity:1; transform: scale(1) translateY(0); }
+        50%      { opacity:0.82; transform: scale(1.025) translateY(-2px); }
+    }
+    .logo-pulse { animation: logoPulse 3s ease-in-out infinite; }
+
+    /* ── "Welcome Back" HOVER LIFT (red box) ── */
+    .heading-hover {
+        transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1),
+                    text-shadow 0.35s ease;
+        display: inline-block;
+        cursor: default;
+    }
+    .heading-hover:hover {
+        transform: translateY(-4px) scale(1.02);
+        text-shadow: 0 8px 24px rgba(14,56,39,0.18);
+    }
+
+    .material-symbols-outlined {
+        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+        transition: all 0.3s ease
+    }
+    .bg-nature-canvas {
+        background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuCxL9LcWh3hh4LxrpIbf1QFA06T1htd-8Tg3HgVc6gv24GA1wbGOPMSBKaKldHn92KUJpRiv4AbX92OHJBpjdEfrX1MdQHTO1r4RuiOuW3EPFCu2AdtLzKma9qltoji83vVHpsXt1YGaN1AIsBd-2c-RYw2CvawLHU8KvuxrdL0e8kVasKcdNRRPFOdoYE3xuJEo1yU2QJ4rQWBibUvI60-hnsgh_fRGIiR0OnOLQXwBXHbG2sHZqeyPP9FC43LStpsdbQIaM21TbaS);
+        background-size: cover;
+        background-position: center
+    }
+    .glass-card {
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px)
+    }
+    .input-group:focus-within .material-symbols-outlined {
+        color: #0e6c4a;
+        font-variation-settings: "FILL" 1
+    }
+    .sunbeam-focus:focus-within {
+        box-shadow: 0 0 15px 2px rgba(255, 215, 0, 0.15);
+        border-color: rgba(255, 215, 0, 0.4)
+    }
+    @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+        100% { transform: translateY(0px); }
+    }
+    .animate-float { animation: float 6s ease-in-out infinite }
+    .shimmer-btn { position: relative; overflow: hidden }
+    .shimmer-btn::after {
+        content: "";
+        position: absolute;
+        top: -50%; left: -50%;
+        width: 200%; height: 200%;
+        background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+        transform: rotate(45deg);
+        transition: 0.5s
+    }
+    .shimmer-btn:hover::after { left: 100%; top: 100% }
+    #toast { transition: opacity 0.4s ease, transform 0.4s ease; }
+    #forgot-modal { backdrop-filter: blur(4px); }
+</style>
+</head>
+<body class="font-body bg-background text-on-background min-h-screen flex flex-col">
+
+<!-- ── Toast Notification ── -->
+<div id="toast" class="fixed top-6 left-1/2 -translate-x-1/2 z-[100] opacity-0 pointer-events-none transform -translate-y-2">
+    <div class="bg-gray-900 text-white text-sm font-semibold px-6 py-3 rounded-full shadow-xl flex items-center gap-2">
+        <span class="material-symbols-outlined text-base" id="toast-icon">info</span>
+        <span id="toast-msg"></span>
+    </div>
+</div>
+
+<!-- ── Forgot Password Modal ── -->
+<div id="forgot-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 hidden">
+    <div class="bg-white rounded-xl shadow-2xl p-8 w-full max-w-sm flex flex-col gap-5 relative">
+        <button onclick="closeForgotModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 text-xl font-bold">✕</button>
+        <h2 class="text-2xl font-extrabold text-primary">Reset Password</h2>
+        <p class="text-sm text-on-surface-variant">Enter your username and we'll help you reset your password.</p>
+        <input id="forgot-username" type="text" placeholder="Your username..."
+            class="w-full bg-surface-container-high rounded-lg px-4 py-3 text-on-surface outline-none focus:ring-2 focus:ring-primary/30 transition-all border-none"/>
+        <button onclick="submitForgot()"
+            class="w-full bg-gradient-to-br from-primary to-primary-container text-white py-3 rounded-lg font-bold hover:opacity-90 active:scale-[0.98] transition-all">
+            Send Reset Request
+        </button>
+    </div>
+</div>
+
+<!-- ── Top Nav Bar ── -->
+<nav class="fixed top-0 w-full z-50 bg-white/65 dark:bg-slate-900/65 backdrop-blur-xl shadow-sm shadow-emerald-900/5">
+    <div class="flex items-center justify-between px-8 py-5 max-w-screen-2xl mx-auto font-manrope antialiased tracking-tight">
+        <div class="text-2xl font-bold tracking-tighter text-emerald-900 dark:text-emerald-50">TaskFlow</div>
+        <div class="hidden md:flex items-center gap-8">
+            <!-- Home → homepage.php -->
+            <a class="text-emerald-800/70 dark:text-emerald-200/70 font-medium hover:bg-emerald-50/40 dark:hover:bg-emerald-900/20 transition-all duration-300 px-3 py-1 rounded" href="index.php">Home</a>
+            <!-- Active: Log-in page -->
+            <a class="text-emerald-950 dark:text-white font-bold border-b-2 border-emerald-700 pb-1" href="Login.html">Log-in</a>
+            <!-- Support → contact.html -->
+            <a class="text-emerald-800/70 dark:text-emerald-200/70 font-medium hover:bg-emerald-50/40 dark:hover:bg-emerald-900/20 transition-all duration-300 px-3 py-1 rounded" href="contact.html">Support</a>
+        </div>
+        <!-- Get Started → signin.html -->
+        <a href="signin.html">
+            <button class="bg-primary text-on-primary px-6 py-2.5 rounded-lg font-bold tracking-tight active:scale-95 transform transition-transform shimmer-btn">
+                Get Started
+            </button>
+        </a>
+    </div>
+</nav>
+
+<!-- ── Main Content ── -->
+<main class="flex-grow flex items-center justify-center bg-nature-canvas relative pt-24 pb-12 px-4">
+    <div class="absolute inset-0 bg-primary/10 mix-blend-multiply pointer-events-none"></div>
+
+    <div class="w-full max-w-md glass-card bg-surface-container-lowest/65 p-10 rounded-xl shadow-2xl animate-float border border-white/20">
+
+        <!-- Success banner after registration -->
+        <div id="success-banner" class="hidden mb-6 bg-green-100 border border-green-300 text-green-800 text-sm font-semibold px-4 py-3 rounded-lg">
+            ✅ Account created! You can now log in.
+        </div>
+
+        <div class="mb-10">
+            <h1 class="logo-pulse heading-hover text-3xl font-extrabold tracking-tight text-primary mb-2">Welcome Back</h1>
+            <p class="text-on-surface-variant font-medium opacity-80">Nature-inspired productivity starts here.</p>
+        </div>
+
+        <form action="login_process.php" class="space-y-6" id="login-form" method="POST">
+
+            <!-- Username -->
+            <div class="space-y-1.5">
+                <label class="block text-sm font-semibold text-on-surface-variant ml-1" for="username">Account ID</label>
+                <div class="relative group input-group">
+                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                        <span class="material-symbols-outlined text-outline">person</span>
+                    </div>
+                    <input class="block w-full pl-12 pr-4 py-3.5 bg-surface-container-high border-none rounded-lg focus:ring-0 focus:bg-surface-container-lowest transition-all duration-300 sunbeam-focus placeholder:text-outline/50 text-on-surface font-medium"
+                        id="username" name="username" placeholder="Enter your handle" required type="text"/>
+                </div>
+                <span class="text-error text-xs font-medium px-1 block h-4" id="user-error"></span>
+            </div>
+
+            <!-- Password -->
+            <div class="space-y-1.5">
+                <div class="flex justify-between items-center ml-1">
+                    <label class="block text-sm font-semibold text-on-surface-variant" for="password">Passphrase</label>
+                    <!-- Forgot → opens modal -->
+                    <a class="text-xs font-bold text-primary hover:underline cursor-pointer" onclick="openForgotModal()">Forgot?</a>
+                </div>
+                <div class="relative group input-group">
+                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                        <span class="material-symbols-outlined text-outline">lock</span>
+                    </div>
+                    <input class="block w-full pl-12 pr-4 py-3.5 bg-surface-container-high border-none rounded-lg focus:ring-0 focus:bg-surface-container-lowest transition-all duration-300 sunbeam-focus placeholder:text-outline/50 text-on-surface font-medium"
+                        id="password" name="password" placeholder="••••••••" required type="password"/>
+                </div>
+                <span class="text-error text-xs font-medium px-1 block h-4" id="pass-error"></span>
+            </div>
+
+            <!-- Remember Me & Submit -->
+            <div class="pt-2 space-y-6">
+                <label class="flex items-center gap-3 cursor-pointer group">
+                    <input class="peer h-5 w-5 rounded border-outline-variant text-secondary focus:ring-secondary/20 transition-all cursor-pointer" type="checkbox" id="remember-me"/>
+                    <span class="text-sm font-medium text-on-surface-variant group-hover:text-primary transition-colors">Keep me signed in</span>
+                </label>
+                <button class="w-full bg-gradient-to-br from-primary to-primary-container text-on-primary py-4 rounded-xl font-bold text-lg shadow-lg shadow-primary/20 hover:shadow-primary/30 active:scale-[0.98] transition-all shimmer-btn" type="submit">
+                    Sign In to Flow
+                </button>
+            </div>
+        </form>
+
+        <!-- ── Google Sign-In divider ── -->
+        <div class="relative my-8 flex items-center">
+            <div class="flex-grow border-t border-primary/10"></div>
+            <span class="flex-shrink mx-4 text-[10px] font-bold text-primary/40 tracking-widest uppercase">Or continue with</span>
+            <div class="flex-grow border-t border-primary/10"></div>
+        </div>
+
+        <!-- Google button -->
+        <a href="google_auth.php" class="flex items-center justify-center gap-3 w-full h-14 bg-white hover:bg-gray-50 rounded-xl transition-all shadow-sm border border-outline-variant/30 hover:shadow-md hover:border-[#4285F4]/30 group hover:-translate-y-0.5 active:scale-[0.98]">
+            <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24">
+                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+            </svg>
+            <span class="text-sm font-bold text-gray-700 group-hover:text-[#4285F4] transition-colors">Continue with Google</span>
+        </a>
+
+        <div class="mt-8 text-center">
+            <p class="text-on-surface-variant text-sm font-medium">
+                New to the ecosystem?
+                <!-- Plant your roots → signin.html -->
+                <a class="text-secondary font-bold hover:text-primary transition-colors ml-1" href="signin.html">Create your account here.</a>
+            </p>
+        </div>
+    </div>
+</main>
+
+<!-- ── Footer ── -->
+<footer class="w-full py-12 mt-auto bg-transparent">
+    <div class="flex flex-col md:flex-row justify-center items-center gap-6 px-4 font-manrope text-sm tracking-wide">
+        <span class="text-emerald-800/60 dark:text-emerald-200/60 opacity-80">© 2026 TaskFlow. All rights reserved.</span>
+        <div class="flex gap-6">
+            <a class="text-emerald-800/60 dark:text-emerald-200/60 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors" href="#">Privacy Policy</a>
+            <a class="text-emerald-800/60 dark:text-emerald-200/60 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors" href="#">Terms of Service</a>
+            <a class="text-emerald-800/60 dark:text-emerald-200/60 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors" href="contact.html">Contact</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const userError = document.getElementById('user-error');
+        const passError = document.getElementById('pass-error');
+        const successBanner = document.getElementById('success-banner');
+
+        // Show PHP redirect errors
+        if (urlParams.has('nouser')) {
+            userError.textContent = "This Account ID doesn't seem to exist.";
+        }
+        if (urlParams.has('wrongpass')) {
+            passError.textContent = "The passphrase provided is incorrect.";
+        }
+        if (urlParams.has('success')) {
+            successBanner.classList.remove('hidden');
+        }
+
+        // Client-side validation before submitting to PHP
+        const form = document.getElementById('login-form');
+        form.addEventListener('submit', function (e) {
+            let hasError = false;
+            userError.textContent = '';
+            passError.textContent = '';
+
+            const user = document.getElementById('username').value.trim();
+            const pass = document.getElementById('password').value;
+
+            if (user.length < 1) {
+                userError.textContent = 'Please enter your Account ID.';
+                hasError = true;
+            }
+            if (pass.length < 1) {
+                passError.textContent = 'Please enter your passphrase.';
+                hasError = true;
+            } else if (pass.length < 6) {
+                passError.textContent = 'Passphrase must be at least 6 characters.';
+                hasError = true;
+            }
+            if (hasError) e.preventDefault();
+        });
+    });
+
+    // ── Toast ──
+    function showToast(message, icon = 'info') {
+        const toast = document.getElementById('toast');
+        document.getElementById('toast-msg').innerText = message;
+        document.getElementById('toast-icon').innerText = icon;
+        toast.classList.remove('opacity-0', 'pointer-events-none', '-translate-y-2');
+        toast.classList.add('opacity-100', 'translate-y-0');
+        setTimeout(() => {
+            toast.classList.add('opacity-0', 'pointer-events-none', '-translate-y-2');
+            toast.classList.remove('opacity-100', 'translate-y-0');
+        }, 3000);
+    }
+
+    // ── Forgot Password Modal ──
+    function openForgotModal() {
+        document.getElementById('forgot-modal').classList.remove('hidden');
+    }
+    function closeForgotModal() {
+        document.getElementById('forgot-modal').classList.add('hidden');
+        document.getElementById('forgot-username').value = '';
+    }
+    function submitForgot() {
+        const username = document.getElementById('forgot-username').value.trim();
+        if (!username) {
+            showToast('Please enter your username first.', 'warning');
+            return;
+        }
+        closeForgotModal();
+        showToast('Request sent! Please contact support to reset your password.', 'check_circle');
+    }
+</script>
+</body>
+</html>
